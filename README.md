@@ -3,17 +3,20 @@
 ![AirForce1s](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.giphy.com%2Fmedia%2FjeMmhPrGyoBoY%2Fgiphy.gif&f=1&nofb=1)
 
 ## Overview
+
 In this lab, we'll used what we learned about working in the mongo shell to practice interacting with a new database of sneakers.
 
 ## Getting started
+
 - `Fork` and `Clone`
-- Open in VSCode so you can *paste your answers* into the ReadMe
+- Open in VSCode so you can _paste your answers_ into the ReadMe
 - Open Terminal
 - Tighten those laces
 
 ## Instructions
 
 Below is an array of objects:
+
 ```js
 const products = [
   { model: "4281", brand: "Nike", color: "Red" },
@@ -71,31 +74,52 @@ Use the MongoDB lesson to solve for the following:
 1. Find all the Air Jordans that have the model number: **4363**.
 
 ```sh
-<--- solution goes here !--->
+db.products.find({model: '4363'})
 ```
 
 2. Find all shoes that are either **red** or **black**.
 
-```sh
-<--- solution goes here !--->
+`````sh
+db.products.find( { $or: [ { color: "Red" }, { color: "Black" }]} )
 ```
 
 3. Insert **4 new** [Air Jordans](https://www.jordan.com/collection/) into our collection (you can just make up model #s and colors if you like):
 
-```sh
-<--- solution goes here !--->
-```
+````sh
+
+
+
+
+db.products.insertMany([
+  { model: "1-10", brand: "JORDAN", color: "Red" },
+  { model: "11-20", brand: "JORDAN", color: "Black" },
+  { model: "11-21", brand: "JORDAN", color: "White" },
+  { model: "11-22", brand: "JORDAN", color: "White" },
+])
+
+
+
+
+`````
 
 4. Update all **red** Jordans to **Maroon**:
 
 ```sh
-<--- solution goes here !--->
+
+
+
+db.products.updateOne( { color: "Red" }, { $set: { color: "Maroon"}, $currentDate: { lastModified: true } } )
+
+
 ```
 
 5. Delete all model **4281** Air Jordans.
 
 ```sh
-<--- solution goes here !--->
+
+
+db.products.deleteOne( { model: "4281" } )
+
 ```
 
 ## Bonus
@@ -121,6 +145,7 @@ Write your queries below:
 ![Jordan](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F66.media.tumblr.com%2Fa46d189bb8c3489dd21537e8478f61c4%2Ftumblr_p44eax11pT1r2cri9o2_500.gifv&f=1&nofb=1)
 
 ## Resources
+
 - [Intro to MongoDB](https://github.com/SEI-R-4-26/u2_lesson_mongoDB)
 - [Mongo Shell](https://docs.mongodb.com/manual/mongo/)
 - [MongoDB Glossary](https://docs.mongodb.com/manual/reference/glossary/)
